@@ -1,0 +1,19 @@
+kind: Subgraph
+version: v2
+definition:
+  name: app
+  generator:
+    rootPath: .
+    namingConvention: graphql
+  includePaths:
+    - metadata
+  envMapping:
+    APP_POSTGRES_HASURA_AUTHORIZATION_HEADER:
+      fromEnv: APP_POSTGRES_HASURA_AUTHORIZATION_HEADER
+    APP_POSTGRES_HASURA_READ_URL:
+      fromEnv: APP_POSTGRES_HASURA_READ_URL
+    APP_POSTGRES_HASURA_WRITE_URL:
+      fromEnv: APP_POSTGRES_HASURA_WRITE_URL
+  connectors:
+    - path: connector/postgres_hasura/connector.yaml
+      connectorLinkName: postgres_hasura

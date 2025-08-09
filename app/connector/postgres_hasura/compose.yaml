@@ -1,0 +1,14 @@
+services:
+  app_postgres_hasura:
+    build:
+      context: .
+      dockerfile: .hasura-connector/Dockerfile.postgres_hasura
+    environment:
+      CONNECTION_URI: $APP_POSTGRES_HASURA_CONNECTION_URI
+      HASURA_SERVICE_TOKEN_SECRET: $APP_POSTGRES_HASURA_HASURA_SERVICE_TOKEN_SECRET
+      OTEL_EXPORTER_OTLP_ENDPOINT: $APP_POSTGRES_HASURA_OTEL_EXPORTER_OTLP_ENDPOINT
+      OTEL_SERVICE_NAME: $APP_POSTGRES_HASURA_OTEL_SERVICE_NAME
+    extra_hosts:
+      - local.hasura.dev:host-gateway
+    ports:
+      - 4413:8080
